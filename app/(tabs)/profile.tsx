@@ -7,8 +7,8 @@ import { Button, Card, Icon, Screen, useThemeColor } from '@/src/components/prim
 import { SectionHeader, SettingsRow } from '@/src/components/composites';
 import { NotificationBell } from '@/src/components/notification-bell';
 import { courses } from '@/src/data/courses';
-import { setItem } from '@/hooks/useStorage';
-import { STORAGE_KEYS } from '@/constants/storage-keys';
+import { closeApp } from '@/lib/close-app';
+import { resetOnboarding } from '@/lib/onboarding-state';
 import { useProfile, initials } from '@/hooks/useProfile';
 import { useProgressStore } from '@/hooks/useProgressStore';
 import { useTheme } from '@/hooks/useTheme';
@@ -55,7 +55,22 @@ export default function ProfileScreen() {
   }, [setProfile]);
 
   const removePhoto = useCallback(() => setProfile({ avatarUri: undefined }), [setProfile]);
-  const handleLogOut = useCallback(async () => { await setItem(STORAGE_KEYS.onboarded, false); router.replace('/splash'); }, [router]);
+  /**
+ * Clears the onboarding state, then kills the process.
+ *
+ * It used to `router.replace('/splash')` instead, which did not test anything
+ * useful: /splash in-process proves the router works, not that a cold launch
+ * does. Closing forces the next tap on the launcher through a real cold start,
+ * which is what the splash handoff actually needs verifying.
+ *
+ * The fallback only runs where the app cannot close itself (iOS, or an Android
+ * deep-link launch where exitApp is a no-op) — it lands on onboarding so the
+ * cleared state is at least visible.
+ */
+const handleLogOut = useCallback(async () => {
+  await resetOnboarding();
+  closeApp(() => router.replace('/onboarding/welcome'));
+}, [router]);
 
   return (
     <Screen showLogo right={<NotificationBell />} contentContainerStyle={{ gap: 20 }}>

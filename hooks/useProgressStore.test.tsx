@@ -41,6 +41,7 @@ const course: Course = {
   icon: 'book',
   lessons: lessons(3),
   progress: 0,
+  outcomes: [],
 };
 
 describe('deriveLessonStatuses (sequential + timed gate)', () => {

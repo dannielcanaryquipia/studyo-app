@@ -66,6 +66,7 @@ export const STEPS = {
   SPLASH_RENDER: 'splash-render',
   SPLASH_ANIM_START: 'splash-anim-start',
   SPLASH_ANIM_DONE: 'splash-anim-done',
+  SPLASH_HANDOFF: 'splash-handoff',
   SPLASH_LAUNCH: 'splash-launch',
   TABS_LAYOUT: 'tabs-layout',
   TABBAR_RENDER: 'tabbar-render',

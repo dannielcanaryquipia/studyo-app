@@ -45,6 +45,14 @@ export type Course = {
   lessons: Lesson[];
   /** Derived: completed / total, from useProgressStore. */
   progress: number;
+  /**
+   * "What you'll learn" bullets on the course-detail Overview tab.
+   * Authored per course in content/<course>/course.json so they track that
+   * course's own lessons — they are not interchangeable between courses.
+   */
+  outcomes: string[];
+  /** Bikol (Sorsoganon) variant of the outcomes; absent for monolingual courses. */
+  outcomesBicol?: string[];
   /** Bikol (Sorsoganon) variant of the course display text; absent for monolingual courses. */
   bicol?: CourseI18n;
 };

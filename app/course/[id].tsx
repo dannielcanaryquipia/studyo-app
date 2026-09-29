@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Badge, Button, Card, Icon, ProgressBar, Screen, useThemeColor } from '@/src/components/primitives';
 import { EmptyState, LessonListItem, SectionHeader } from '@/src/components/composites';
 import { courses, lessonQuizzes } from '@/src/data/courses';
-import { courseText, lessonText, useContentLang } from '@/hooks/useContentLang';
+import { courseOutcomes, courseText, lessonText, useContentLang } from '@/hooks/useContentLang';
 import { useProgressStore } from '@/hooks/useProgressStore';
 import type { ContentLang } from '@/types/course';
 
@@ -66,6 +66,7 @@ export default function CourseScreen() {
     : allDone ? 'Review course' : hasProgress ? 'Continue' : 'Start';
 
   const t = courseText(course, lang);
+  const outcomes = courseOutcomes(course, lang);
   const bilingual = !!course.bicol;
 
   return (
@@ -145,19 +146,17 @@ export default function CourseScreen() {
           {activeTab === 'overview' && (
             <View style={{ gap: 12 }}>
               <Text style={[s.bodyText, { color: text }]}>{t.description}</Text>
-              <View style={[s.outcomesCard, { borderColor: border, backgroundColor: surface }]}>
-                <Text style={[s.outcomesTitle, { color: text }]}>What you'll learn</Text>
-                {[
-                  'Apply the 28-letter Filipino alphabet correctly',
-                  'Distinguish proper uses of tuldik accent marks',
-                  'Follow official KWF punctuation rules',
-                ].map((outcome) => (
-                  <View key={outcome} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                    <Icon name="check-circle" size={18} color={success} />
-                    <Text style={[s.outcomesText, { color: text, flex: 1 }]}>{outcome}</Text>
-                  </View>
-                ))}
-              </View>
+              {outcomes.length > 0 && (
+                <View style={[s.outcomesCard, { borderColor: border, backgroundColor: surface }]}>
+                  <Text style={[s.outcomesTitle, { color: text }]}>What you’ll learn</Text>
+                  {outcomes.map((outcome) => (
+                    <View key={outcome} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+                      <Icon name="check-circle" size={18} color={success} />
+                      <Text style={[s.outcomesText, { color: text, flex: 1 }]}>{outcome}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
 
               {courseQuizzes.length > 0 && (
                 <>

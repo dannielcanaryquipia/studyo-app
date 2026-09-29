@@ -29,6 +29,7 @@ const pambansa: Course = {
     lesson(3, 'Mga Bantas', 'Punctuation', '# Mga Bantas\nAng tutuldok ay ginagamit sa harap ng listahan.'),
   ],
   progress: 0,
+  outcomes: [],
 };
 
 const sorsoganon: Course = {

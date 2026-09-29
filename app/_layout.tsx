@@ -15,6 +15,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Colors from '@/constants/Colors';
 import { mark, STEPS } from '@/lib/diagnostics';
+import { whenSplashPainted } from '@/lib/splash-gate';
 import { ContentLangProvider } from '@/hooks/useContentLang';
 import { NotificationsProvider } from '@/hooks/useNotifications';
 import { ProfileProvider } from '@/hooks/useProfile';
@@ -116,7 +117,17 @@ function RootLayoutNav() {
     if (nativeSplashHidden.current) return;
     nativeSplashHidden.current = true;
     mark(STEPS.STACK);
-    SplashScreen.hideAsync().catch(() => {});
+    // onLayout only proves the root View was measured — it does not mean /splash
+    // has drawn anything. In a release APK the bundle is already resident, so the
+    // router can resolve the destination in this same frame. Dropping the native
+    // splash here tore it down before the animated splash had painted, and the
+    // user landed on the destination having never seen the animation.
+    // The wait is bounded inside the gate, so a /splash that never mounts still
+    // resolves.
+    whenSplashPainted().then(() => {
+      mark(STEPS.SPLASH_HANDOFF);
+      SplashScreen.hideAsync().catch(() => {});
+    });
   }, []);
 
   return (

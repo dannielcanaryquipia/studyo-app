@@ -7,5 +7,19 @@
   "duration": "1h 45m",
   "rating": 4.8,
   "difficulty": "Beginner",
-  "icon": "menu-book"
+  "icon": "menu-book",
+  "outcomes": [
+    "Basahin at baybayin gamit ang 28-titik na alpabetong Sorsoganon, kasama ang mga tuldik, bantas, at pono-mikong diin",
+    "Hatiin ang mga salita sa pantig at ipatupad ang wastong pag-ispeling ng mga katutubo at hinudam na salita",
+    "Gamitin ang y/w bilang kapalit ng i/u at ayusin ang mga kambal-katinig at digrapo sa mga hinudam na salita",
+    "Piliin ang tamang titik sa palitang e/i at o/u, at ilagay ang tuldok, kuwit, at tandang pananong nang wasto",
+    "Ipaliwanag ang mga pangunahing tuntunin ng Ortograpiyang Sorsoganon at ang mga pagkakaiba nito sa Ortograpiyang Pambansa"
+  ],
+  "bicolOutcomes": [
+    "Basahen as ispelihen gamit an 28-letra na alpabeto na Sorsoganon, kaupod an mga tuldik, bantas, nan an ponemiko na duon",
+    "Pagsilabaon an mga surmaton, dayon ituluy an tama na pag-ispeling san mga katutubo kun hinudam na surmaton",
+    "Gamiton an y/w bilang katukal san i/u, ayuson an mga kambal-katinig nan digrapo sa mga hinudam na surmaton",
+    "Piliwon an tamong letra sa salyuhan san E/I nan O/U, dayon itag-ayan an tuldok, kuwit, nan tandang pananong",
+    "Ipaliwanag an mga pangunahing patakaran san Ortograpiyang Sorsoganon, dayon ituluy an mga pagkakaiba sini sa Ortograpiyang Pambansa"
+  ]
 }

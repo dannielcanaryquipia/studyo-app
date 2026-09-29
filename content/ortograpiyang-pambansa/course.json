@@ -7,5 +7,12 @@
   "duration": "2h 30m",
   "rating": 4.9,
   "difficulty": "Beginner",
-  "icon": "menu-book"
+  "icon": "menu-book",
+  "outcomes": [
+    "Use the 28-letter Filipino alphabet and the four tuldik correctly",
+    "Spell out loud and write down borrowed words the way the KWF prescribes",
+    "Choose between din/rin, daw/raw, and ng/nang without guessing",
+    "Punctuate with tuldok, kuwit, tuldok-kuwit, and padamdam, and hyphenate correctly",
+    "Write the names of people, places, and organizations, and spell out numbers in Filipino"
+  ]
 }

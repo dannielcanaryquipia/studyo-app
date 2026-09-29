@@ -61,3 +61,18 @@ export function lessonText(
     ? lesson.bicol
     : { title: lesson.title, description: lesson.description, content: lesson.content };
 }
+
+/**
+ * Resolve the "What you'll learn" bullets in the active language.
+ *
+ * Sits alongside courseText/lessonText so the course-detail screen has one
+ * rule for picking a language variant. Falls back to the authored outcomes when
+ * a course has no Bikol variants, so a monolingual course (or a bilingual one
+ * missing outcomesBicol) still reads correctly in both toggles.
+ */
+export function courseOutcomes(
+  course: { outcomes: string[]; outcomesBicol?: string[] },
+  lang: ContentLang,
+): string[] {
+  return lang === 'bcl' && course.outcomesBicol ? course.outcomesBicol : course.outcomes;
+}

@@ -32,6 +32,10 @@ export type CourseSeed = {
   icon: MaterialIconName;
   /** topic ids from topics.json — must match the manifest course-id set (§4.3.4). */
   topics?: string[];
+  /** "What you'll learn" bullets, authored per course in course.json. */
+  outcomes?: string[];
+  /** Bikol (Sorsoganon) variant of `outcomes`. */
+  outcomesBicol?: string[];
   lessons: RawLesson[];
   quiz?: Quiz;
   /** Optional Bikol (Sorsoganon) variant of the course display text. */
@@ -79,6 +83,8 @@ export function hydrateCourse(seed: CourseSeed): Course {
     icon: seed.icon,
     lessons,
     progress: 0,
+    outcomes: seed.outcomes ?? [],
+    ...(seed.outcomesBicol ? { outcomesBicol: seed.outcomesBicol } : {}),
     ...(seed.bicol ? { bicol: seed.bicol } : {}),
   };
 }

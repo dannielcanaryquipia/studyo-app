@@ -113,6 +113,7 @@ const seed1: CourseSeed = {
   rating: courseMeta1.rating,
   difficulty: courseMeta1.difficulty as 'Beginner' | 'Intermediate' | 'Advanced',
   icon: courseMeta1.icon as CourseSeed['icon'],
+  outcomes: courseMeta1.outcomes,
   lessons: parseRawLessons(OP_RAW, OP_STEMS),
   quiz: { courseId: courseMeta1.id, questions: quizData1.questions as Quiz['questions'] },
 };
@@ -127,6 +128,8 @@ const seed2: CourseSeed = {
   rating: courseMeta2.rating,
   difficulty: courseMeta2.difficulty as 'Beginner' | 'Intermediate' | 'Advanced',
   icon: courseMeta2.icon as CourseSeed['icon'],
+  outcomes: courseMeta2.outcomes,
+  outcomesBicol: courseMeta2.bicolOutcomes,
   lessons: parseBilingualLessons(OS_RAW, OS_BCL_RAW, OS_STEMS),
   quiz: { courseId: courseMeta2.id, questions: quizData2.questions as Quiz['questions'] },
   bicol: {

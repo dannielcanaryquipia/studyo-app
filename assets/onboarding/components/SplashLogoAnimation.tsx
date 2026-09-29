@@ -6,7 +6,7 @@
  * closure. Only the current path string is held in a SharedValue;
  * useAnimatedProps reads it on the UI thread with a tiny closure.
  */
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 import Animated, {
   useAnimatedProps,
@@ -35,9 +35,17 @@ export const SplashLogoAnimation: React.FC<SplashLogoAnimationProps> = ({
 }) => {
   const sharedPath = useSharedValue<string>(SPLASH_FRAME_PATHS[0] ?? '');
 
-  const handleComplete = useCallback(() => {
-    onComplete?.();
-  }, [onComplete]);
+  /**
+   * Held in a ref rather than depended on directly. `onComplete` is rebuilt on
+   * every render of the splash screen (it chains back to `useRouter()`, whose
+   * identity tracks navigation state). Depending on it would restart the 94
+   * frame loop from frame 0 on each of those renders, so the animation could
+   * never reach its end and only the 4.5 s safety timer would fire.
+   */
+  const onCompleteRef = useRef(onComplete);
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  });
 
   useEffect(() => {
     mark(STEPS.SPLASH_ANIM_START);
@@ -51,7 +59,7 @@ export const SplashLogoAnimation: React.FC<SplashLogoAnimationProps> = ({
       frame += 1;
       if (frame >= TOTAL_FRAMES) {
         sharedPath.value = SPLASH_FRAME_PATHS[TOTAL_FRAMES - 1] ?? '';
-        handleComplete();
+        onCompleteRef.current?.();
         return;
       }
       sharedPath.value = SPLASH_FRAME_PATHS[frame] ?? '';
@@ -64,7 +72,7 @@ export const SplashLogoAnimation: React.FC<SplashLogoAnimationProps> = ({
       alive = false;
       clearTimeout(timer);
     };
-  }, [sharedPath, handleComplete]);
+  }, [sharedPath]);
 
   const animatedProps = useAnimatedProps(() => ({
     d: sharedPath.value,
