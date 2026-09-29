@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import { Card, Icon, ProgressBar, Screen, Skeleton, useThemeColor } from '@/src/components/primitives';
@@ -10,7 +10,7 @@ import { goalToMinutes } from '@/lib/onboarding';
 import { getItem } from '@/hooks/useStorage';
 import { STORAGE_KEYS } from '@/constants/storage-keys';
 import { useProfile, firstName } from '@/hooks/useProfile';
-import { useProgressStore } from '@/hooks/useProgressStore';
+import { studiedMinutesOn, useProgressStore } from '@/hooks/useProgressStore';
 import { useResponsive } from '@/hooks/useResponsive';
 import type { Goal } from '@/types/user';
 
@@ -18,7 +18,7 @@ const GOAL_LABEL: Record<Goal, string> = { casual: 'Casual', regular: 'Regular',
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { courseProgressFor, hydrating } = useProgressStore();
+  const { courseProgressFor, completionTimes, streak, hydrating } = useProgressStore();
   const { name } = useProfile();
   const { hPad, gap, headingSize, bodySize, isTablet, isLandscape, cols } = useResponsive();
 
@@ -34,8 +34,15 @@ export default function HomeScreen() {
 
   const goalMinutes = goalToMinutes(goal);
   const goalLabel = goal ? GOAL_LABEL[goal] : 'Casual';
-  const studiedMinutes = 0;
+  // Daily Goal: sum the authored minutes of every lesson completed today.
+  const durationByLessonId = useMemo(
+    () => Object.fromEntries(courses.flatMap((c) => c.lessons.map((l) => [l.id, l.durationMin]))),
+    [],
+  );
+  const studiedMinutes = studiedMinutesOn(completionTimes, durationByLessonId);
   const goalPct = goalMinutes > 0 ? Math.min(1, studiedMinutes / goalMinutes) : 0;
+  // Cap the shown numerator at the goal so it reads "15/15", not "16/15", once met.
+  const shownMinutes = Math.min(studiedMinutes, goalMinutes);
 
   const continueCourse = courses.find((c) => courseProgressFor(c) > 0) ?? courses[0];
   const recommended = courses.filter((c) => courseProgressFor(c) === 0);
@@ -61,14 +68,14 @@ export default function HomeScreen() {
             <Text style={[s.bentoLabel, { color: muted, fontSize: bodySize }]}>Daily Streak</Text>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
-            <Text style={[s.bentoValue, { color: accent, fontSize: isTablet ? 36 : 30 }]}>0</Text>
-            <Text style={[s.bentoUnit, { color: muted, fontSize: bodySize }]}>Days</Text>
+            <Text style={[s.bentoValue, { color: accent, fontSize: isTablet ? 36 : 30 }]}>{streak}</Text>
+            <Text style={[s.bentoUnit, { color: muted, fontSize: bodySize }]}>{streak === 1 ? 'Day' : 'Days'}</Text>
           </View>
         </Card>
         <Card style={[s.bentoCard, { padding: hPad > 20 ? 20 : 16 }]}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <Text style={[s.bentoLabel, { color: muted, fontSize: bodySize }]}>Daily Goal</Text>
-            <Text style={[s.bentoSmall, { color: muted }]}>{studiedMinutes}/{goalMinutes} min</Text>
+            <Text style={[s.bentoSmall, { color: muted }]}>{shownMinutes}/{goalMinutes} min</Text>
           </View>
           <View style={{ gap: 6 }}>
             <Text style={[s.bentoSmall, { color: accent }]}>{goalLabel} pace</Text>

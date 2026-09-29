@@ -13,7 +13,7 @@ import { averageScore } from '@/lib/quiz-scoring';
 
 export default function ProgressScreen() {
   const router = useRouter();
-  const { completions, quizAttempts, completeCount, courseProgressFor } = useProgressStore();
+  const { completions, quizAttempts, completeCount, courseProgressFor, streak } = useProgressStore();
   const { gap, isTablet, isLandscape, headingSize, bodySize } = useResponsive();
 
   const primaryFixed = useThemeColor('primaryFixed');
@@ -55,7 +55,7 @@ export default function ProgressScreen() {
         <View style={{ flex: 1, gap: 8, flexDirection: miniCardDirection }}>
           <View style={[s.miniCard, { flex: 1, backgroundColor: primaryFixed }]}>
             <Icon name="local-fire-department" size={isTablet ? 26 : 22} color={fire} />
-            <Text style={[s.miniValue, { color: text, fontSize: isTablet ? 24 : 20 }]}>0</Text>
+            <Text style={[s.miniValue, { color: text, fontSize: isTablet ? 24 : 20 }]}>{streak}</Text>
             <Text style={[s.miniLabel, { color: muted }]}>Day Streak</Text>
           </View>
           <View style={[s.miniCard, { flex: 1, borderWidth: 1, borderColor: border, backgroundColor: surface }]}>

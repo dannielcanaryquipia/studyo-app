@@ -10,10 +10,12 @@ import type { Course, Lesson } from '@/types/course';
 import {
   computeStreak,
   courseProgress,
+  currentStreak,
   deriveLessonStatuses,
   LESSON_UNLOCK_DELAY_MS,
   nextUnlockAt,
   ProgressProvider,
+  studiedMinutesOn,
   useProgressStore,
 } from './useProgressStore';
 
@@ -111,6 +113,55 @@ describe('computeStreak', () => {
   it('dedupes and handles empty', () => {
     expect(computeStreak(['2026-09-15', '2026-09-15'])).toBe(1);
     expect(computeStreak([])).toBe(0);
+  });
+});
+
+describe('studiedMinutesOn (Daily Goal)', () => {
+  const NOW = new Date('2026-09-29T14:00:00').getTime();
+  const durations = { 'c1:1': 10, 'c1:2': 12, 'c1:3': 8 };
+
+  it('sums durations of lessons completed today', () => {
+    const times = { 'c1:1': new Date('2026-09-29T09:00:00').getTime(), 'c1:2': new Date('2026-09-29T13:30:00').getTime() };
+    expect(studiedMinutesOn(times, durations, NOW)).toBe(22);
+  });
+
+  it('ignores lessons completed on other days', () => {
+    const times = { 'c1:1': new Date('2026-09-28T23:59:00').getTime(), 'c1:2': new Date('2026-09-29T00:01:00').getTime() };
+    expect(studiedMinutesOn(times, durations, NOW)).toBe(12);
+  });
+
+  it('unknown durations contribute 0; empty completions → 0', () => {
+    expect(studiedMinutesOn({ 'c9:9': NOW }, durations, NOW)).toBe(0);
+    expect(studiedMinutesOn({}, durations, NOW)).toBe(0);
+  });
+});
+
+describe('currentStreak (Daily Streak)', () => {
+  const NOW = new Date('2026-09-29T20:00:00').getTime();
+  const day = (d: string, h = 10) => new Date(`${d}T${String(h).padStart(2, '0')}:00:00`).getTime();
+
+  it('counts consecutive study days ending today', () => {
+    const times = { a: day('2026-09-27'), b: day('2026-09-28'), c: day('2026-09-29') };
+    expect(currentStreak(times, NOW)).toBe(3);
+  });
+
+  it('multiple lessons on the same day count once', () => {
+    const times = { a: day('2026-09-29', 8), b: day('2026-09-29', 15), c: day('2026-09-28') };
+    expect(currentStreak(times, NOW)).toBe(2);
+  });
+
+  it('grace: a streak ending yesterday is still live', () => {
+    const times = { a: day('2026-09-27'), b: day('2026-09-28') };
+    expect(currentStreak(times, NOW)).toBe(2);
+  });
+
+  it('broken when the last study day is older than yesterday', () => {
+    const times = { a: day('2026-09-25'), b: day('2026-09-26') };
+    expect(currentStreak(times, NOW)).toBe(0);
+  });
+
+  it('empty completions → 0', () => {
+    expect(currentStreak({}, NOW)).toBe(0);
   });
 });
 

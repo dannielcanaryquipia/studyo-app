@@ -300,29 +300,46 @@ export function ProgressRing({
   progress,
   size = 72,
   strokeWidth = 8,
+  label,
 }: {
   progress: number;
   size?: number;
   strokeWidth?: number;
+  /** Optional centered content — a `%` string renders as the ring's value. */
+  label?: ReactNode;
 }) {
   const accent = useThemeColor('accent');
   const track = useThemeColor('border');
+  const text = useThemeColor('text');
   const pct = clamp100(progress);
   const r = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * r;
   const center = size / 2;
   return (
-    <Svg width={size} height={size}>
-      <Circle cx={center} cy={center} r={r} stroke={track} strokeWidth={strokeWidth} fill="none" />
-      <Circle
-        cx={center} cy={center} r={r}
-        stroke={accent} strokeWidth={strokeWidth} strokeLinecap="round"
-        strokeDasharray={`${circumference}`}
-        strokeDashoffset={circumference * (1 - pct / 100)}
-        transform={`rotate(-90 ${center} ${center})`}
-        fill="none"
-      />
-    </Svg>
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+      <Svg width={size} height={size}>
+        <Circle cx={center} cy={center} r={r} stroke={track} strokeWidth={strokeWidth} fill="none" />
+        <Circle
+          cx={center} cy={center} r={r}
+          stroke={accent} strokeWidth={strokeWidth} strokeLinecap="round"
+          strokeDasharray={`${circumference}`}
+          strokeDashoffset={circumference * (1 - pct / 100)}
+          transform={`rotate(-90 ${center} ${center})`}
+          fill="none"
+        />
+      </Svg>
+      {label != null && (
+        <View style={StyleSheet.absoluteFill} pointerEvents="none">
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            {typeof label === 'string' || typeof label === 'number' ? (
+              <Text style={{ color: text, fontFamily: 'SpaceMono_700Bold', fontSize: size * 0.24 }}>{label}</Text>
+            ) : (
+              label
+            )}
+          </View>
+        </View>
+      )}
+    </View>
   );
 }
 

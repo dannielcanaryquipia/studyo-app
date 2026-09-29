@@ -101,6 +101,34 @@ export function courseProgress(
   return done / lessonCount;
 }
 
+/** Local calendar-day key (YYYY-MM-DD) — the Daily Goal resets at local midnight. */
+export function localDayKey(ts: number): string {
+  const d = new Date(ts);
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+/**
+ * Minutes studied on `now`'s local day: the summed duration of every lesson
+ * whose completion timestamp falls on today. Powers the Daily Goal bar — each
+ * completed lesson credits its authored `minutes` once, and the total resets at
+ * local midnight. Durations arrive as a lessonId→minutes map so this stays
+ * content-agnostic, like the other derivations here.
+ */
+export function studiedMinutesOn(
+  completionTimes: Readonly<Record<string, number>>,
+  durationByLessonId: Readonly<Record<string, number>>,
+  now: number = Date.now(),
+): number {
+  const today = localDayKey(now);
+  let sum = 0;
+  for (const id in completionTimes) {
+    if (localDayKey(completionTimes[id]) === today) sum += durationByLessonId[id] ?? 0;
+  }
+  return sum;
+}
+
 /** Trailing consecutive days from the most recent day key (YYYY-MM-DD or ISO slice). */
 export function computeStreak(dayKeys: ReadonlyArray<string>): number {
   if (dayKeys.length === 0) return 0;
@@ -116,6 +144,25 @@ export function computeStreak(dayKeys: ReadonlyArray<string>): number {
   return streak;
 }
 
+/**
+ * The user's *live* daily streak: consecutive study days ending today (or
+ * yesterday, a one-day grace so a streak isn't lost until a full day is missed).
+ * If the last study day is older than that, the streak is broken → 0. Study days
+ * are the local calendar days on which any lesson was completed.
+ */
+export function currentStreak(
+  completionTimes: Readonly<Record<string, number>>,
+  now: number = Date.now(),
+): number {
+  const dayKeys = Object.values(completionTimes).map(localDayKey);
+  if (dayKeys.length === 0) return 0;
+  const mostRecent = [...new Set(dayKeys)].sort().reverse()[0];
+  if (mostRecent !== localDayKey(now) && mostRecent !== localDayKey(now - 24 * 60 * 60 * 1000)) {
+    return 0; // last studied before yesterday → streak broken
+  }
+  return computeStreak(dayKeys);
+}
+
 // --- Context ----------------------------------------------------------------
 
 export type ProgressContextValue = {
@@ -129,6 +176,8 @@ export type ProgressContextValue = {
   unlockAtFor: (lessons: ReadonlyArray<Lesson>, lessonId: string) => number | null;
   courseProgressFor: (course: Course) => number;
   completeCount: number;
+  /** Live daily study streak (consecutive days, ending today/yesterday). */
+  streak: number;
   bestScore: (courseId: string) => number;
   toggleComplete: (lessonId: string) => void;
   recordQuizResult: (courseId: string, percent: number) => void;
@@ -185,6 +234,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     unlockAtFor: (lessons, lessonId) => nextUnlockAt(lessons, completions, completionTimes, lessonId),
     courseProgressFor: (course) => courseProgress(course.id, course.lessons.length, completions),
     completeCount: completions.length,
+    streak: currentStreak(completionTimes),
     bestScore: (courseId) => quizAttempts[courseId] ?? 0,
     toggleComplete,
     recordQuizResult,

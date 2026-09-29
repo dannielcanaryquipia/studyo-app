@@ -42,10 +42,10 @@ export default function QuizResultsScreen() {
   const quiz = useMemo(() => lessonQuizzes.find((q) => q.lessonId === params.lessonId), [params.lessonId]);
 
   return (
-    <Screen title="Quiz Results" onBack={() => router.replace({ pathname: '/course/[id]', params: { id: params.courseId ?? '' } })}>
+    <Screen title="Quiz Results" onBack={() => router.dismissTo({ pathname: '/course/[id]', params: { id: params.courseId ?? '' } })}>
       {/* Score hero */}
       <View style={{ alignItems: 'center', gap: 12, paddingVertical: 8 }}>
-        <ProgressRing progress={percent} size={120} strokeWidth={10} />
+        <ProgressRing progress={percent} size={120} strokeWidth={10} label={`${percent}%`} />
         <Text style={[s.gradeLabel, { color: text }]}>{gradeLabel(percent)}</Text>
         <Text style={[s.scoreSubtitle, { color: muted }]}>You scored {percent}% on this quiz.</Text>
       </View>
@@ -99,7 +99,7 @@ export default function QuizResultsScreen() {
         <Button
           variant="secondary"
           label="Back to Course"
-          onPress={() => router.replace({ pathname: '/course/[id]', params: { id: params.courseId ?? '' } })}
+          onPress={() => router.dismissTo({ pathname: '/course/[id]', params: { id: params.courseId ?? '' } })}
         />
       </View>
     </Screen>

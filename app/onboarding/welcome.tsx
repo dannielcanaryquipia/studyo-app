@@ -9,8 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { STORAGE_KEYS } from '@/constants/storage-keys';
 import { setItem } from '@/hooks/useStorage';
-import { useThemeColor } from '@/src/components/primitives';
-import { Button, PageIndicator } from '@/src/components/primitives';
+import { Button, PageIndicator, useThemeColor } from '@/src/components/primitives';
 import StudyoLogo from '@/src/components/StudyoLogo';
 import { useResponsive } from '@/hooks/useResponsive';
 
@@ -20,6 +19,8 @@ export default function WelcomeScreen() {
   const insets = useSafeAreaInsets();
   const background = useThemeColor('background');
   const accent = useThemeColor('accent');
+  const text = useThemeColor('text');
+  const muted = useThemeColor('textMuted');
 
   const handleGetStarted = useCallback(() => {
     router.push('/onboarding/interests');
@@ -64,8 +65,8 @@ export default function WelcomeScreen() {
           <StudyoLogo size={logoSize} />
         </View>
         <View style={{ alignItems: 'center', gap: 8 }}>
-          <Text style={[s.title, { fontSize: headingSize }]}>Learn without limits</Text>
-          <Text style={[s.body, { maxWidth: 360, fontSize: bodySize + 2 }]}>
+          <Text style={[s.title, { fontSize: headingSize, color: text }]}>Learn without limits</Text>
+          <Text style={[s.body, { maxWidth: 360, fontSize: bodySize + 2, color: muted }]}>
             Track your progress, build streaks, and master new skills with a personalized learning journey.
           </Text>
         </View>
@@ -104,8 +105,8 @@ const s = StyleSheet.create({
   skipBtn: { minHeight: 44, minWidth: 44, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 8 },
   skipText: { fontFamily: 'Inter_600SemiBold', fontSize: 14 },
   hero: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  title: { fontFamily: 'SpaceMono_700Bold', fontSize: 24, color: '#1A1A1A', textAlign: 'center' },
-  body: { fontFamily: 'Inter_400Regular', fontSize: 16, color: '#6B7280', textAlign: 'center' },
+  title: { fontFamily: 'SpaceMono_700Bold', fontSize: 24, textAlign: 'center' },
+  body: { fontFamily: 'Inter_400Regular', fontSize: 16, textAlign: 'center' },
   footer: { width: '100%', alignItems: 'center', gap: 24 },
   cta: { width: '100%', height: 56 },
 });

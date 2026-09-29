@@ -55,8 +55,14 @@ export function CategoryChips({
               { borderColor: active ? accent : border, backgroundColor: active ? withAlpha(accent, '33') : surface },
               grid && cs.chipGrid,
             ]}>
-            {category.icon ? <Icon name={category.icon} size={20} color={active ? accent : undefined} /> : null}
-            <Text style={[cs.chipLabel, { color: active ? accent : muted }]}>{category.label}</Text>
+            {category.icon ? <Icon name={category.icon} size={20} color={active ? accent : muted} /> : null}
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.8}
+              style={[cs.chipLabel, cs.chipLabelFit, { color: active ? accent : text }]}>
+              {category.label}
+            </Text>
           </Pressable>
         );
       })}
@@ -531,6 +537,7 @@ const cs = StyleSheet.create({
   chip: { flexDirection: 'row', alignItems: 'center', gap: 8, borderRadius: 999, borderWidth: 1, paddingHorizontal: 16, minHeight: 44, justifyContent: 'center' },
   chipGrid: { width: '48%' },
   chipLabel: { fontFamily: 'Inter_600SemiBold', fontSize: 14 },
+  chipLabelFit: { flexShrink: 1, textAlign: 'center' },
   // section header
   sectionHeader: { flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 8 },
   sectionTitle: { fontFamily: 'SpaceMono_700Bold', fontSize: 20 },

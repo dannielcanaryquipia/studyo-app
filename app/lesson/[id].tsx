@@ -7,10 +7,15 @@ import { Button, Icon, Screen, useThemeColor } from '@/src/components/primitives
 import { EmptyState, LessonBody } from '@/src/components/composites';
 import { courses } from '@/src/data/courses';
 import { lessonText, useContentLang } from '@/hooks/useContentLang';
-import { useProgressStore } from '@/hooks/useProgressStore';
+import { LESSON_UNLOCK_DELAY_MS, useProgressStore } from '@/hooks/useProgressStore';
 import { splitLessonSections } from '@/lib/lesson-sections';
 
-const minsLabel = (ms: number) => `${Math.max(1, Math.ceil(ms / 60000))} min`;
+// Clamp to the unlock delay: a lesson opens exactly LESSON_UNLOCK_DELAY_MS after
+// the previous one, so the remaining time never truly exceeds it. Without the
+// clamp, seconds of reading time elapsed since the cached `now` tick push the
+// value just over 60 min and `ceil` renders a stray "61 min".
+const minsLabel = (ms: number) =>
+  `${Math.max(1, Math.ceil(Math.min(LESSON_UNLOCK_DELAY_MS, ms) / 60000))} min`;
 
 export default function LessonScreen() {
   const router = useRouter();

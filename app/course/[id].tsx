@@ -7,10 +7,15 @@ import { Badge, Button, Card, Icon, ProgressBar, Screen, useThemeColor } from '@
 import { EmptyState, LessonListItem, SectionHeader } from '@/src/components/composites';
 import { courses, lessonQuizzes } from '@/src/data/courses';
 import { courseOutcomes, courseText, lessonText, useContentLang } from '@/hooks/useContentLang';
-import { useProgressStore } from '@/hooks/useProgressStore';
+import { LESSON_UNLOCK_DELAY_MS, useProgressStore } from '@/hooks/useProgressStore';
 import type { ContentLang } from '@/types/course';
 
-const minsLabel = (ms: number) => `${Math.max(1, Math.ceil(ms / 60000))} min`;
+// Clamp to the unlock delay: a lesson opens exactly LESSON_UNLOCK_DELAY_MS after
+// the previous one, so the remaining time never truly exceeds it. Without the
+// clamp, seconds of reading time elapsed since the cached `now` tick push the
+// value just over 60 min and `ceil` renders a stray "61 min".
+const minsLabel = (ms: number) =>
+  `${Math.max(1, Math.ceil(Math.min(LESSON_UNLOCK_DELAY_MS, ms) / 60000))} min`;
 
 export default function CourseScreen() {
   const router = useRouter();
@@ -71,7 +76,8 @@ export default function CourseScreen() {
     : allDone ? 'Review course' : hasProgress ? 'Continue' : 'Start';
 
   const t = courseText(course, lang);
-  const outcomes = courseOutcomes(course, lang);
+  // "What you'll learn" stays in Tagalog regardless of the Bikol toggle.
+  const outcomes = courseOutcomes(course, 'tl');
   const bilingual = !!course.bicol;
 
   return (
