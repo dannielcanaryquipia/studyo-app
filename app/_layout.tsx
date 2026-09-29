@@ -133,9 +133,6 @@ function RootLayoutNav() {
                   <Stack.Screen name="splash" options={{ animation: 'none' }} />
                   <Stack.Screen name="onboarding" />
                   <Stack.Screen name="(tabs)" />
-                  <Stack.Screen name="course" />
-                  <Stack.Screen name="lesson" />
-                  <Stack.Screen name="quiz" />
                   <Stack.Screen name="settings" />
                   <Stack.Screen name="achievements" />
                   <Stack.Screen name="notifications" />

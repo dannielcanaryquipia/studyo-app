@@ -30,7 +30,6 @@ const TABS: TabConfig[] = [
 ];
 
 const TWEEN_MS = 150;
-const withAlpha = (hex: string, alpha: string) => `${hex}${alpha}`;
 
 export function TabBar({ state, navigation }: BottomTabBarProps) {
   const insets = useSafeAreaInsets();
@@ -77,8 +76,12 @@ function TabItem({ config, isActive, onPress }: { config: TabConfig; isActive: b
     progress.value = withTiming(isActive ? 1 : 0, { duration: TWEEN_MS });
   }, [isActive, progress]);
 
+  // Precomputed on the JS thread: the worklet below runs on the UI runtime and
+  // cannot call JS-thread functions, so no helper calls are allowed in its body.
+  const pillResting = `${primaryFixed}00`;
+
   const pillStyle = useAnimatedStyle(() => ({
-    backgroundColor: interpolateColor(progress.value, [0, 1], [withAlpha(primaryFixed, '00'), primaryFixed]),
+    backgroundColor: interpolateColor(progress.value, [0, 1], [pillResting, primaryFixed]),
     transform: [{ scale: interpolate(progress.value, [0, 1], [0.85, 1]) }],
   }));
 
