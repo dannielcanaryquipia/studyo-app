@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, BackHandler, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, Card, Screen, useThemeColor } from '@/src/components/primitives';
 import { EmptyState, QuizOption } from '@/src/components/composites';
@@ -19,6 +20,9 @@ export default function QuizScreen() {
   const surface = useThemeColor('surface');
   const background = useThemeColor('background');
   const text = useThemeColor('text');
+  // This CTA is a sibling of <Screen>, so it sits outside the SafeAreaView that
+  // handles the top/left/right edges and has to clear the bottom inset itself.
+  const insets = useSafeAreaInsets();
 
   const quiz = useMemo(() => lessonQuizzes.find((q) => q.lessonId === params.lessonId), [params.lessonId]);
 
@@ -120,7 +124,7 @@ export default function QuizScreen() {
       </Screen>
 
       {/* Sticky CTA */}
-      <View style={[s.cta, { borderTopColor: border, backgroundColor: surface }]}>
+      <View style={[s.cta, { borderTopColor: border, backgroundColor: surface, paddingBottom: 12 + insets.bottom }]}>
         {!showResult ? (
           <Button variant="primary" label="Submit Answer" disabled={selectedIdx === null} onPress={handleSubmit} />
         ) : (

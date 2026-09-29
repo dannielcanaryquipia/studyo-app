@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Button, Icon, Screen, useThemeColor } from '@/src/components/primitives';
 import { EmptyState, LessonBody } from '@/src/components/composites';
@@ -24,6 +25,11 @@ export default function LessonScreen() {
   const surface = useThemeColor('surface');
   const text = useThemeColor('text');
   const muted = useThemeColor('textMuted');
+  // This bar is a sibling of <Screen>, so it sits outside the SafeAreaView that
+  // handles the top/left/right edges and has to clear the bottom inset itself.
+  // The lesson CTA is the most-tapped control in the app — it must clear the
+  // gesture bar.
+  const insets = useSafeAreaInsets();
 
   const courseId = (params.id ?? '').split(':')[0];
   const course = useMemo(() => courses.find((c) => c.id === courseId), [courseId]);
@@ -130,7 +136,7 @@ export default function LessonScreen() {
       </Screen>
 
       {/* Sticky nav */}
-      <View style={[s.stickyNav, { borderTopColor: border, backgroundColor: surface }]}>
+      <View style={[s.stickyNav, { borderTopColor: border, backgroundColor: surface, paddingBottom: 12 + insets.bottom }]}>
         <Button
           variant="secondary"
           label="Prev"

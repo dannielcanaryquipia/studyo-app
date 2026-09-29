@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Badge, Button, Card, Icon, ProgressBar, Screen, useThemeColor } from '@/src/components/primitives';
 import { EmptyState, LessonListItem, SectionHeader } from '@/src/components/composites';
@@ -24,6 +25,10 @@ export default function CourseScreen() {
   const border = useThemeColor('border');
   const background = useThemeColor('background');
   const surface = useThemeColor('surface');
+  // This footer is a sibling of <Screen>, so it sits outside the SafeAreaView
+  // that handles the top/left/right edges and has to clear the bottom inset
+  // itself or the CTA lands under the gesture bar.
+  const insets = useSafeAreaInsets();
 
   const [activeTab, setActiveTab] = useState<'overview' | 'curriculum'>('overview');
   const [now, setNow] = useState(() => Date.now());
@@ -226,7 +231,7 @@ export default function CourseScreen() {
       </Screen>
 
       {/* Sticky CTA */}
-      <View style={[s.cta, { borderTopColor: border, backgroundColor: surface }]}>
+      <View style={[s.cta, { borderTopColor: border, backgroundColor: surface, paddingBottom: 12 + insets.bottom }]}>
         <Button
           variant="primary"
           label={ctaLabel}
