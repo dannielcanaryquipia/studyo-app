@@ -6,11 +6,13 @@ screenshot-ui-studyo-mobile/
 .vscode/
 .github/
 
-# Docs and planning files at root
-AGENTS.md
-CLAUDE.md
+# Docs and planning files at root ONLY
+# NOTE: must stay root-scoped. A bare "*.md" pattern matches at every depth and
+# would strip content/**/*.md — the lesson sources Metro bundles at build time,
+# which fails the build with "Unable to resolve module .../*.md".
+/*.md
 LICENSE
-*.md
+!**/*.md
 
 # Test files — not needed in the build bundle
 **/*.test.ts
