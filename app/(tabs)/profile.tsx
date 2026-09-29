@@ -55,22 +55,22 @@ export default function ProfileScreen() {
   }, [setProfile]);
 
   const removePhoto = useCallback(() => setProfile({ avatarUri: undefined }), [setProfile]);
-  /**
- * Clears the onboarding state, then kills the process.
- *
- * It used to `router.replace('/splash')` instead, which did not test anything
- * useful: /splash in-process proves the router works, not that a cold launch
- * does. Closing forces the next tap on the launcher through a real cold start,
- * which is what the splash handoff actually needs verifying.
- *
- * The fallback only runs where the app cannot close itself (iOS, or an Android
- * deep-link launch where exitApp is a no-op) — it lands on onboarding so the
- * cleared state is at least visible.
- */
-const handleLogOut = useCallback(async () => {
-  await resetOnboarding();
-  closeApp(() => router.replace('/onboarding/welcome'));
-}, [router]);
+/**
+   * Clears the onboarding state, then kills the process.
+   *
+   * It used to `router.replace('/splash')`, which tested nothing useful: a
+   * route change in-process proves the router works, not that a cold launch
+   * does. Closing forces the next launcher tap through a real cold start, which
+   * is what the splash handoff actually needs verifying.
+   *
+   * There is no routing here by design — no fallback, no destination. On
+   * Android the process is killed; on iOS the user gets an explanation (iOS
+   * forbids self-closing); on web the page reloads.
+   */
+  const handleLogOut = useCallback(async () => {
+    await resetOnboarding();
+    closeApp();
+  }, []);
 
   return (
     <Screen showLogo right={<NotificationBell />} contentContainerStyle={{ gap: 20 }}>

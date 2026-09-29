@@ -1,6 +1,6 @@
 {
   "name": "studyo-app",
-  "main": "expo-router/entry",
+  "main": "entry.js",
   "version": "1.0.0",
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -17,6 +17,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
+    "react-native-exit-app": "^2.0.0",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-markdown-display": "^7.0.2",
     "react-native-reanimated": "4.5.1",
@@ -46,6 +47,16 @@
   },
   "jest": {
     "preset": "jest-expo"
+  },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "react-native-exit-app"
+        ],
+        "listUnknownPackages": false
+      }
+    }
   },
   "private": true
 }

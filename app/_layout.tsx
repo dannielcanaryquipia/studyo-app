@@ -5,12 +5,11 @@ import {
   ErrorBoundary,
   Stack,
   ThemeProvider,
-  useRouter,
 } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useRef } from 'react';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Colors from '@/constants/Colors';
@@ -89,28 +88,19 @@ export default function RootLayout() {
   );
 }
 
-// Module-level flag: resets on every real page load, persists through Fast Refresh.
-// On web, ensures splash always plays when the browser tab first loads.
-let _webSplashPending = true;
-
 function RootLayoutNav() {
   const { isDark } = useTheme();
-  const router = useRouter();
 
   useEffect(() => {
     mark(STEPS.PROVIDERS);
     mark(STEPS.LAUNCH_COMPLETE);
   }, []);
 
-  // Web-only: redirect to /splash on first mount so the animation always plays
-  // regardless of which URL the browser reloads at. Module-level flag ensures
-  // this redirect only fires once per full page load (not on Fast Refresh).
-  useEffect(() => {
-    if (Platform.OS === 'web' && _webSplashPending) {
-      _webSplashPending = false;
-      router.replace('/splash');
-    }
-  }, [router]);
+  // No self-redirect to /splash here (it used to exist for web). `splash` is
+  // already the root stack's initialRouteName, so the animation plays on a cold
+  // start on every platform. The redirect only added a second path into the
+  // same route, and it was the one piece of routing that made "splash always
+  // shows" depend on something other than initialRouteName.
 
   const nativeSplashHidden = useRef(false);
   const handleRootLayout = useCallback(() => {

@@ -255,7 +255,7 @@ export function StreakCard({
           <Icon name="local-fire-department" size={24} color={star} />
           <Text style={[cs.streakLabel, { color: text }]}>{streakDays}-day streak</Text>
         </View>
-        <Text style={[cs.streakGoal, { color: muted }]}>Today's goal {Math.round(goalPct)}%</Text>
+        <Text style={[cs.streakGoal, { color: muted }]}>Today’s goal {Math.round(goalPct)}%</Text>
       </View>
       <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
         {heatClamped.map((active, index) => (

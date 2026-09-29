@@ -1,48 +1,55 @@
 /**
  * lib/close-app.ts — best-effort process termination.
  *
- * Log Out uses this instead of routing back through /splash. The point of the
- * button is a genuine cold start: wipe the onboarding state, kill the process,
- * and let the OS launch the app from scratch next time. Re-entering /splash
- * in-process would only prove the router works, not that a fresh launch does —
- * and a fresh launch is the thing under test.
+ * Log Out uses this instead of routing anywhere. The point of the button is a
+ * genuine cold start: wipe the onboarding state, kill the process, and let the
+ * OS launch the app from scratch next time. Re-entering a route in-process would
+ * only prove the router works, not that a cold launch does — and a cold launch
+ * is the thing under test.
  *
- * Platform reality, checked against package.json — there is no `expo-dev-client`,
- * `expo-updates`, or `react-native-exit-app` installed, so nothing here can rely
- * on a dev-only native module or on an extra dependency:
+ * Implementation notes, all verified against the installed sources rather than
+ * assumed:
  *
- *  - Android: `BackHandler.exitApp()` finishes the activity task. It is React
- *    Native core, so it behaves the same in Expo Go, a dev client, and a release
- *    APK. React Native guards it on `isTaskRoot()`, which is false for a
- *    deep-link launch, so it is a *silent* no-op in that case. Hence the grace
- *    timer: if the process is still alive to run it, the close did not happen.
- *  - iOS: there is no supported way for an app to close itself. This is an App
- *    Store guideline prohibition, not a missing capability.
- *  - Web: a reload is the closest equivalent.
+ *  - `react-native-exit-app` calls `Process.killProcess(Process.myPid())`
+ *    (android/src/main/java/.../RNExitAppImpl.java). That is a real process
+ *    kill, so the next launcher tap is always a cold start.
+ *
+ *  - React Native core's `BackHandler.exitApp()` CANNOT do this on 0.86 and is
+ *    deliberately not used. It calls `invokeDefaultBackPressHandler()`, which
+ *    reaches `ReactActivity.invokeDefaultOnBackPressed()` and then
+ *    `Activity.onBackPressed()` — that finishes the activity and backgrounds the
+ *    task while the process stays alive, so the next tap resumes the same warm
+ *    task. The app would appear to close and would still fail to test a cold
+ *    start.
+ *
+ *  - iOS apps may not close themselves. That is an App Store guideline rule, not
+ *    a missing capability, so there is nothing to implement — this reports it
+ *    instead of silently doing nothing.
+ *
+ * Because the Android path kills the process synchronously there is no
+ * "did it work?" fallback to schedule: no code after the call would run anyway.
  */
-import { BackHandler, Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
+import RNExitApp from 'react-native-exit-app';
 
-/** How long to wait before concluding `exitApp()` did not take effect. */
-const EXIT_GRACE_MS = 300;
+const IOS_TITLE = 'Cannot close the app';
+const IOS_BODY =
+  'iOS does not allow an app to close itself. Close Studyo from the app switcher, then reopen it to get a fresh start.';
 
 /**
- * Terminate the app. `onUnsupported` runs only when the platform cannot close
- * the app, or when the Android close silently failed — it is the caller's
- * degraded path, not the normal one.
+ * Terminate the app. Resolves nowhere on Android — the process is gone.
+ * On iOS this surfaces an explanation instead of navigating.
  */
-export function closeApp(onUnsupported: () => void): void {
+export function closeApp(): void {
   if (Platform.OS === 'web') {
     (globalThis as { location?: { reload?: () => void } }).location?.reload?.();
     return;
   }
 
-  if (Platform.OS !== 'android') {
-    onUnsupported();
+  if (Platform.OS === 'android') {
+    RNExitApp.exitApp();
     return;
   }
 
-  BackHandler.exitApp();
-
-  // Only reached if the process survived exitApp().
-  setTimeout(onUnsupported, EXIT_GRACE_MS);
+  Alert.alert(IOS_TITLE, IOS_BODY);
 }

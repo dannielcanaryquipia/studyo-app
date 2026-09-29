@@ -1,23 +1,29 @@
 /**
  * SplashLogoAnimation — full 94-frame SVG animation.
  *
- * Frames are stepped from the JS thread via setTimeout so the 396 KB
- * SPLASH_FRAME_PATHS array never enters a Reanimated UI-thread worklet
- * closure. Only the current path string is held in a SharedValue;
- * useAnimatedProps reads it on the UI thread with a tiny closure.
+ * The frames are stepped on the JS thread by a plain timer and rendered through
+ * React state. That is a deliberate reversal of the previous implementation,
+ * which drove `d` through Reanimated's `useAnimatedProps`.
+ *
+ * Why: `useAnimatedProps` on a react-native-svg `Path` does not reliably
+ * repaint per frame under Fabric (New Architecture) — see react-native-svg#2962,
+ * where a `useAnimatedProps` prop stays at its initial value for the whole
+ * animation and snaps only at the end, while a sibling `useAnimatedStyle` on the
+ * same SharedValue animates correctly. The symptom in a release build is exactly
+ * what was reported: the splash ran for its full duration and then routed on,
+ * but the logo was never actually drawn.
+ *
+ * Reanimated also bought nothing here. The frame loop was already JS-driven via
+ * setTimeout, so the 396 KB path array could never live on the UI thread anyway;
+ * the only thing the SharedValue added was a dependency on Fabric prop
+ * repainting. Re-rendering one `<Path>` 94 times across 3.1 s is free.
  */
-import React, { useEffect, useRef } from 'react';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
-import Animated, {
-  useAnimatedProps,
-  useSharedValue,
-} from 'react-native-reanimated';
+import React, { useEffect, useRef, useState } from 'react';
+import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 import { mark, STEPS } from '@/lib/diagnostics';
 import { SPLASH_FRAME_PATHS } from '../frame-paths';
-
-const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const TOTAL_FRAMES = SPLASH_FRAME_PATHS.length; // 94
 const FRAME_MS = Math.round(1000 / 30); // ~33 ms @ 30 fps
@@ -33,14 +39,14 @@ export const SplashLogoAnimation: React.FC<SplashLogoAnimationProps> = ({
   brandColor = '#7C3AED',
   style,
 }) => {
-  const sharedPath = useSharedValue<string>(SPLASH_FRAME_PATHS[0] ?? '');
+  const [frame, setFrame] = useState(0);
 
   /**
    * Held in a ref rather than depended on directly. `onComplete` is rebuilt on
    * every render of the splash screen (it chains back to `useRouter()`, whose
    * identity tracks navigation state). Depending on it would restart the 94
    * frame loop from frame 0 on each of those renders, so the animation could
-   * never reach its end and only the 4.5 s safety timer would fire.
+   * never reach its end and only the splash safety timer would fire.
    */
   const onCompleteRef = useRef(onComplete);
   useEffect(() => {
@@ -50,19 +56,19 @@ export const SplashLogoAnimation: React.FC<SplashLogoAnimationProps> = ({
   useEffect(() => {
     mark(STEPS.SPLASH_ANIM_START);
 
-    let frame = 0;
+    let index = 0;
     let alive = true;
     let timer: ReturnType<typeof setTimeout>;
 
     const step = () => {
       if (!alive) return;
-      frame += 1;
-      if (frame >= TOTAL_FRAMES) {
-        sharedPath.value = SPLASH_FRAME_PATHS[TOTAL_FRAMES - 1] ?? '';
+      index += 1;
+      if (index >= TOTAL_FRAMES) {
+        setFrame(TOTAL_FRAMES - 1);
         onCompleteRef.current?.();
         return;
       }
-      sharedPath.value = SPLASH_FRAME_PATHS[frame] ?? '';
+      setFrame(index);
       timer = setTimeout(step, FRAME_MS);
     };
 
@@ -72,26 +78,22 @@ export const SplashLogoAnimation: React.FC<SplashLogoAnimationProps> = ({
       alive = false;
       clearTimeout(timer);
     };
-  }, [sharedPath]);
-
-  const animatedProps = useAnimatedProps(() => ({
-    d: sharedPath.value,
-  }));
+  }, []);
 
   return (
-    <Animated.View style={[styles.container, style]}>
+    <View style={[styles.container, style]}>
       <Svg
         viewBox="0 0 720 1280"
         style={styles.svg}
         preserveAspectRatio="xMidYMid meet"
       >
-        <AnimatedPath
+        <Path
           fill={brandColor}
           fillRule="evenodd"
-          animatedProps={animatedProps}
+          d={SPLASH_FRAME_PATHS[frame] ?? ''}
         />
       </Svg>
-    </Animated.View>
+    </View>
   );
 };
 
