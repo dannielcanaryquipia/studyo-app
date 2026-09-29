@@ -1,0 +1,558 @@
+{
+  "questions": [
+    {
+      "text": "Anong taon inilabas ng Komisyon sa Wikang Filipino (KWF) ang opisyal na Ortograpiyang Pambansa?",
+      "options": [
+        { "letter": "A", "text": "1987" },
+        { "letter": "B", "text": "2001" },
+        { "letter": "C", "text": "2013" },
+        { "letter": "D", "text": "2020" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Noong 2013 inilabas ng KWF ang Ortograpiyang Pambansa — ang opisyal na pamantayan sa wastong pagbabaybay ng wikang Filipino.",
+      "lessonId": "ortograpiyang-pambansa:1"
+    },
+    {
+      "text": "Ano ang ibig sabihin ng 'ortograpiya'?",
+      "options": [
+        { "letter": "A", "text": "Ang sistema ng mga pamantayan sa tamang pagbabaybay ng mga salita" },
+        { "letter": "B", "text": "Ang pag-aaral ng kasaysayan ng wika" },
+        { "letter": "C", "text": "Isang uri ng panitikan" },
+        { "letter": "D", "text": "Isang listahan ng mga bagong salita" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ang ortograpiya ay ang sistema ng mga pamantayan sa tamang pagbabaybay — kasama ang mga titik, tuldik, bantas, at paghahati ng pantig.",
+      "lessonId": "ortograpiyang-pambansa:1"
+    },
+    {
+      "text": "Alin sa mga sumusunod ang HINDI kabilang sa mga layunin ng bagong ortograpiya?",
+      "options": [
+        { "letter": "A", "text": "Madaling gamitin" },
+        { "letter": "B", "text": "Episyente" },
+        { "letter": "C", "text": "Pleksible" },
+        { "letter": "D", "text": "Mahirap at masalimuot" }
+      ],
+      "correctIndex": 3,
+      "explanation": "Ang mga layunin ng bagong ortograpiya ay maging madaling gamitin, episyente, pleksible, at tumpak — hindi mahirap o masalimuot.",
+      "lessonId": "ortograpiyang-pambansa:1"
+    },
+
+    {
+      "text": "Ilan ang titik ng opisyal na alpabetong Filipino ayon sa Ortograpiyang Pambansa ng 2013?",
+      "options": [
+        { "letter": "A", "text": "20 titik (Abakada)" },
+        { "letter": "B", "text": "26 titik" },
+        { "letter": "C", "text": "28 titik" },
+        { "letter": "D", "text": "31 titik" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang alpabetong Filipino ay binubuo ng 28 titik — kasama na ang walong bagong titik na C, F, J, Ñ, Q, V, X, at Z.",
+      "lessonId": "ortograpiyang-pambansa:2"
+    },
+    {
+      "text": "Ilang patinig mayroon ang alpabetong Filipino?",
+      "options": [
+        { "letter": "A", "text": "3" },
+        { "letter": "B", "text": "5" },
+        { "letter": "C", "text": "7" },
+        { "letter": "D", "text": "8" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Limang patinig lamang ang Filipino: a, e, i, o, u. Ang lahat ng iba pang titik ay katinig.",
+      "lessonId": "ortograpiyang-pambansa:2"
+    },
+    {
+      "text": "Paano itinuturing ang 'Ng' sa alpabetong Filipino?",
+      "options": [
+        { "letter": "A", "text": "Isang titik na ang pangalan ay 'endyi'" },
+        { "letter": "B", "text": "Dalawang hiwalay na titik na 'en' at 'dyi'" },
+        { "letter": "C", "text": "Isang patinig" },
+        { "letter": "D", "text": "Isang tuldik" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ang 'Ng' ay itinuturing na ISANG titik sa alpabetong Filipino, ang pangalan ay 'endyi', at ito ay isang katinig na may natatanging tunog.",
+      "lessonId": "ortograpiyang-pambansa:2"
+    },
+
+    {
+      "text": "Alin sa mga sumusunod ang uri ng tuldik na ginagamit para sa salitang MARAGSÂ?",
+      "options": [
+        { "letter": "A", "text": "Pahilís pababa ( ` ) — grave accent" },
+        { "letter": "B", "text": "Pahilís pataas ( ´ ) — acute accent" },
+        { "letter": "C", "text": "Pakupyâ ( ^ ) — circumflex accent" },
+        { "letter": "D", "text": "Walang tanda" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang salitang maragsâ ay may diin sa huling pantig at may impit na tunog sa dulo. Ginagamit ang tuldik na pakupyâ ( ^ ) o circumflex accent.",
+      "lessonId": "ortograpiyang-pambansa:3"
+    },
+    {
+      "text": "Ang salitang may diin sa penúltima (ikalawang pantig mula sa huli) at may impit na tunog sa dulo ay tinatawag na?",
+      "options": [
+        { "letter": "A", "text": "Malumay" },
+        { "letter": "B", "text": "Malumì" },
+        { "letter": "C", "text": "Maragsâ" },
+        { "letter": "D", "text": "Mabilís" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang malumì ay may diin sa penúltima at may impit na tunog sa dulo; ginagamit ang tuldik na pahilís pababa ( ` ).",
+      "lessonId": "ortograpiyang-pambansa:3"
+    },
+    {
+      "text": "Aling uri ng tuldik ang WALANG tanda sa ibabaw ng patinig?",
+      "options": [
+        { "letter": "A", "text": "Malumay" },
+        { "letter": "B", "text": "Malumì" },
+        { "letter": "C", "text": "Maragsâ" },
+        { "letter": "D", "text": "Mabilís" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ang malumay ay may diin sa penúltima at walang impit sa dulo — hindi ito nilalagyan ng anumang tanda.",
+      "lessonId": "ortograpiyang-pambansa:3"
+    },
+
+    {
+      "text": "Ano ang KAILANGANG mayroon ang bawat pantig?",
+      "options": [
+        { "letter": "A", "text": "Isang katinig" },
+        { "letter": "B", "text": "Isang patinig" },
+        { "letter": "C", "text": "Dalawang katinig" },
+        { "letter": "D", "text": "Isang tuldik" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang susi sa pantig ay ang patinig — bawat pantig ay kailangang may patinig. Ang katinig ay hindi makapag-iisa bilang pantig.",
+      "lessonId": "ortograpiyang-pambansa:4"
+    },
+    {
+      "text": "Ilang pantig mayroon ang salitang 'paaralan'?",
+      "options": [
+        { "letter": "A", "text": "Dalawa" },
+        { "letter": "B", "text": "Tatlo" },
+        { "letter": "C", "text": "Apat" },
+        { "letter": "D", "text": "Lima" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang 'paaralan' ay may apat na pantig: pa-a-ra-lan. Ang dalawang magkasunod na patinig (a-a) ay hiwalay na pantig.",
+      "lessonId": "ortograpiyang-pambansa:4"
+    },
+    {
+      "text": "Ang uri ng pantig na 'CV' (katinig + patinig, tulad ng ba, ka, sa) ay?",
+      "options": [
+        { "letter": "A", "text": "Ang pinakabihirang uri" },
+        { "letter": "B", "text": "Ang pinakakaraniwang uri sa Filipino" },
+        { "letter": "C", "text": "Ginagamit lamang sa mga salitang hiram" },
+        { "letter": "D", "text": "Hindi tunay na pantig" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang CV (katinig-patinig) ay ang pinakakaraniwang uri ng pantig sa wikang Filipino.",
+      "lessonId": "ortograpiyang-pambansa:4"
+    },
+
+    {
+      "text": "Alin sa mga sumusunod ang TAMANG pagbabaybay ng salitang 'diskarte' sa mga pantig?",
+      "options": [
+        { "letter": "A", "text": "dis-kar-te" },
+        { "letter": "B", "text": "di-skar-te" },
+        { "letter": "C", "text": "disk-ar-te" },
+        { "letter": "D", "text": "di-ska-rte" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang tamang paghahati ay 'di-skar-te' — sa gitna ng salita, ang grupong 'sk' ay nananatiling magkasama sa susunod na pantig.",
+      "lessonId": "ortograpiyang-pambansa:5"
+    },
+    {
+      "text": "Paano tama ang paghahati sa pantig ng salitang 'eskwela'?",
+      "options": [
+        { "letter": "A", "text": "e-skwe-la" },
+        { "letter": "B", "text": "es-kwe-la" },
+        { "letter": "C", "text": "esk-we-la" },
+        { "letter": "D", "text": "es-kwel-a" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Sa simula ng salita, ang grupong 'sk' ay kasama ng unang pantig: es-kwe-la.",
+      "lessonId": "ortograpiyang-pambansa:5"
+    },
+    {
+      "text": "Sa salitang 'prinsipe', paano itinuturing ang klaster na 'pr'?",
+      "options": [
+        { "letter": "A", "text": "Hinahati: pri-nsipe" },
+        { "letter": "B", "text": "Nananatiling magkasama: prin-si-pe" },
+        { "letter": "C", "text": "Tinatanggal ang isa" },
+        { "letter": "D", "text": "Ginagawang dalawang pantig: p-rin-sipe" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang mga klaster na pr, pl, tr, dr, atbp. ay itinuturing na isang piraso at hindi hinahati: prin-si-pe.",
+      "lessonId": "ortograpiyang-pambansa:5"
+    },
+
+    {
+      "text": "Ano ang pangunahing prinsipyo sa pagbaybay na pasulat sa Filipino?",
+      "options": [
+        { "letter": "A", "text": "'Kung ano ang bigkas, siyong sulat'" },
+        { "letter": "B", "text": "Laging sundin ang baybay na Ingles" },
+        { "letter": "C", "text": "Laging gamitin ang orihinal na Espanyol" },
+        { "letter": "D", "text": "Walang tuntunin sa pagbaybay" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ang Filipino ay phonetic na wika: 'Kung ano ang bigkas, siyong sulat.' Karaniwang isinusulat ang salita ayon sa pagbigkas.",
+      "lessonId": "ortograpiyang-pambansa:6"
+    },
+    {
+      "text": "Ano ang pagkakaiba ng pagbaybay na pasalita at pasulat?",
+      "options": [
+        { "letter": "A", "text": "Pareho lang sila" },
+        { "letter": "B", "text": "Sa pasalita, isa-isang binibigkas ang mga titik; sa pasulat, isinusulat ang salita ayon sa bigkas" },
+        { "letter": "C", "text": "Ang pasalita ay para lamang sa mga bilang" },
+        { "letter": "D", "text": "Ang pasulat ay laging Ingles" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Sa pagbaybay na pasalita, isa-isang binibigkas ang bawat titik (hal. KWF → key-dobolyu-ef). Sa pasulat, sinusunod ang prinsipyong 'kung ano ang bigkas, siyong sulat.'",
+      "lessonId": "ortograpiyang-pambansa:6"
+    },
+    {
+      "text": "Alin sa mga salitang ito ang HINDI na dapat baguhin dahil matagal nang ginagamit sa Filipino?",
+      "options": [
+        { "letter": "A", "text": "sapatos" },
+        { "letter": "B", "text": "zapatos" },
+        { "letter": "C", "text": "ventana" },
+        { "letter": "D", "text": "forma" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ang 'sapatos' ay matagal nang naitatag na anyo sa Filipino — hindi na ito ibinabalik sa orihinal na Espanyol na 'zapatos'.",
+      "lessonId": "ortograpiyang-pambansa:6"
+    },
+
+    {
+      "text": "Alin ang WALONG bagong titik na idinagdag sa alpabetong Filipino?",
+      "options": [
+        { "letter": "A", "text": "B, D, G, H, L, M, R, S" },
+        { "letter": "B", "text": "C, F, J, Ñ, Q, V, X, Z" },
+        { "letter": "C", "text": "A, E, I, O, U, W, Y, Ng" },
+        { "letter": "D", "text": "K, P, T, N, Ng, Y, W, H" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang walong bagong titik ay C, F, J, Ñ, Q, V, X, at Z — opisyal nang bahagi ng alpabeto sa ilalim ng Ortograpiyang Pambansa.",
+      "lessonId": "ortograpiyang-pambansa:7"
+    },
+    {
+      "text": "Sa panahon ng Abakada, ang tunog ng 'F' ay kadalasang pinapalitan ng anong titik? (hal. Filipinas → ?)",
+      "options": [
+        { "letter": "A", "text": "B" },
+        { "letter": "B", "text": "P" },
+        { "letter": "C", "text": "V" },
+        { "letter": "D", "text": "H" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Sa Abakada, ang F ay ginagawang P — halimbawa, Filipinas → Pilipinas.",
+      "lessonId": "ortograpiyang-pambansa:7"
+    },
+    {
+      "text": "Sa walong bagong titik, alin ang mas MADALAS makita sa mga karaniwang salita?",
+      "options": [
+        { "letter": "A", "text": "C, Ñ, Q, X" },
+        { "letter": "B", "text": "F, J, V, Z" },
+        { "letter": "C", "text": "A, E, I, O" },
+        { "letter": "D", "text": "Ng, Y, W, H" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang F, J, V, Z ay mas madalas gamitin sa mga karaniwang salita, habang ang C, Ñ, Q, X ay mas bihira at kadalasan ay sa mga pantanging pangalan lamang.",
+      "lessonId": "ortograpiyang-pambansa:7"
+    },
+
+    {
+      "text": "Alin sa mga salitang ito ang HINDI dapat ibalik sa orihinal na baybay ng Espanyol?",
+      "options": [
+        { "letter": "A", "text": "sapatos — huwag gawing 'zapatos'" },
+        { "letter": "B", "text": "pirma — huwag gawing 'firma'" },
+        { "letter": "C", "text": "vakul — maaaring gawing 'bakul'" },
+        { "letter": "D", "text": "Tama ang A at B" }
+      ],
+      "correctIndex": 3,
+      "explanation": "Ang 'sapatos' at 'pirma' ay matagal nang naitatag sa Filipino at hindi na ibinabalik sa orihinal na anyo. Ang 'vakul' (Ivatan) naman ay pinapanatili ang orihinal na baybay.",
+      "lessonId": "ortograpiyang-pambansa:8"
+    },
+    {
+      "text": "Ang salitang Espanyol na 'ventana' ay isinusulat sa Filipino bilang?",
+      "options": [
+        { "letter": "A", "text": "ventana" },
+        { "letter": "B", "text": "bintana" },
+        { "letter": "C", "text": "bentana" },
+        { "letter": "D", "text": "vintana" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'ventana' ay naitatag na sa Filipino bilang 'bintana' — hindi na ito ibinabalik sa orihinal na baybay.",
+      "lessonId": "ortograpiyang-pambansa:8"
+    },
+    {
+      "text": "Para saan pangunahing ginagamit ang walong bagong titik (F, C, J, Ñ, Q, V, X, Z)?",
+      "options": [
+        { "letter": "A", "text": "Sa lahat ng lumang salita" },
+        { "letter": "B", "text": "Sa mga bagong hiram na salita at pantanging pangalan" },
+        { "letter": "C", "text": "Wala na silang gamit" },
+        { "letter": "D", "text": "Para sa mga tuldik" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang walong bagong titik ay para sa mga bagong hiram na salita at sa mga pantanging pangalan na may orihinal na baybay.",
+      "lessonId": "ortograpiyang-pambansa:8"
+    },
+
+    {
+      "text": "Sa salitang 'takbo', alin ang TAMANG anyo kapag dinagdagan ng hulaping '-án'?",
+      "options": [
+        { "letter": "A", "text": "takboán" },
+        { "letter": "B", "text": "takbuhán" },
+        { "letter": "C", "text": "takbeán" },
+        { "letter": "D", "text": "takbwán" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Kapag may hulapi, ang 'o' sa dulo ng ugat na walang diin ay maaaring maging 'u'. Kaya ang 'takbo' + '-án' ay nagiging 'takbuhán'.",
+      "lessonId": "ortograpiyang-pambansa:9"
+    },
+    {
+      "text": "Kailan MAAARING palitan ang E ng I o ang O ng U sa mga hiram na salita?",
+      "options": [
+        { "letter": "A", "text": "Kapag may diin (stressed) ang pantig" },
+        { "letter": "B", "text": "Kapag HINDI binibigkas nang malakas (walang diin) ang pantig" },
+        { "letter": "C", "text": "Sa lahat ng pagkakataon" },
+        { "letter": "D", "text": "Hindi kailanman" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Maaaring palitan ang E ng I at ang O ng U kapag ang pantig ay HINDI binibigkas nang malakas — hal. estasyon → istasyon.",
+      "lessonId": "ortograpiyang-pambansa:9"
+    },
+    {
+      "text": "Alin ang HINDI dapat baguhin kahit may hulapi?",
+      "options": [
+        { "letter": "A", "text": "Salitang may dobleng O, tulad ng 'noód' → panoórin" },
+        { "letter": "B", "text": "Lahat ng titik E" },
+        { "letter": "C", "text": "Lahat ng titik O" },
+        { "letter": "D", "text": "Walang eksepsiyon" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Huwag baguhin ang dobleng O (OO) kahit may hulapi — hal. noód → panoórin, buó → kabuóan.",
+      "lessonId": "ortograpiyang-pambansa:9"
+    },
+
+    {
+      "text": "Alin ang TAMANG sagot? 'Pumunta _____ siya sa palengke nang maaga.'",
+      "options": [
+        { "letter": "A", "text": "din" },
+        { "letter": "B", "text": "rin" },
+        { "letter": "C", "text": "Maaaring din o rin" },
+        { "letter": "D", "text": "man" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'Pumunta' ay nagtatapos sa patinig na 'a', kaya ginagamit ang 'rin'. Tuntunin: pagkatapos ng patinig, gamitin ang 'rin' o 'raw'.",
+      "lessonId": "ortograpiyang-pambansa:10"
+    },
+    {
+      "text": "Kailan ginagamit ang 'rin' o 'raw' sa halip na 'din' o 'daw'?",
+      "options": [
+        { "letter": "A", "text": "Pagkatapos ng salitang nagtatapos sa katinig" },
+        { "letter": "B", "text": "Pagkatapos ng salitang nagtatapos sa patinig" },
+        { "letter": "C", "text": "Sa simula ng pangungusap" },
+        { "letter": "D", "text": "Laging tama ang 'rin/raw'" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Kung ang naunang salita ay nagtatapos sa patinig, gamitin ang R (rin, raw). Kung nagtatapos sa katinig, gamitin ang D (din, daw).",
+      "lessonId": "ortograpiyang-pambansa:10"
+    },
+    {
+      "text": "Alin ang tama? 'Kumain _____ kami.' (ang 'kumain' ay nagtatapos sa /n/)",
+      "options": [
+        { "letter": "A", "text": "rin" },
+        { "letter": "B", "text": "din" },
+        { "letter": "C", "text": "raw" },
+        { "letter": "D", "text": "alinman" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'kumain' ay nagtatapos sa katinig na 'n', kaya 'din' ang tama: 'Kumain din kami.'",
+      "lessonId": "ortograpiyang-pambansa:10"
+    },
+
+    {
+      "text": "Alin sa mga sumusunod ang WASTONG gamit ng 'nang'?",
+      "options": [
+        { "letter": "A", "text": "Kumain siya nang mangga." },
+        { "letter": "B", "text": "Ito ang bahay nang aming pamilya." },
+        { "letter": "C", "text": "Tumakbo siya nang mabilis." },
+        { "letter": "D", "text": "Bumili ako nang tiket." }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang 'nang' ay pang-abay ng paraan — nagpapahayag kung PAANO ginawa ang kilos. 'Tumakbo siya nang mabilis' ang tamang gamit.",
+      "lessonId": "ortograpiyang-pambansa:11"
+    },
+    {
+      "text": "Bilang anong bahagi ng pananalita ginagamit ang 'nang'?",
+      "options": [
+        { "letter": "A", "text": "Pantukoy ng pangngalan" },
+        { "letter": "B", "text": "Pang-abay o pangatnig (paraan, oras, layunin)" },
+        { "letter": "C", "text": "Pang-uri lamang" },
+        { "letter": "D", "text": "Pangngalan" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'nang' ay pang-abay o pangatnig — nagpapahayag ng paraan, oras, o layunin. Ang 'ng' naman ay pantukoy/pangnangalan.",
+      "lessonId": "ortograpiyang-pambansa:11"
+    },
+    {
+      "text": "Anong pagsusuri (substitution test) ang nagpapakita na dapat gamitin ang 'nang'?",
+      "options": [
+        { "letter": "A", "text": "Kung mapapalitan ito ng 'noong' o 'upang'" },
+        { "letter": "B", "text": "Kung mapapalitan ito ng 'ang'" },
+        { "letter": "C", "text": "Kung mapapalitan ito ng 'sa'" },
+        { "letter": "D", "text": "Walang paraan para malaman" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Palitan ng 'noong' o 'upang'. Kung bagay, gamitin ang 'nang'. Kung hindi bagay, gamitin ang 'ng'.",
+      "lessonId": "ortograpiyang-pambansa:11"
+    },
+
+    {
+      "text": "Alin ang TAMANG paggamit ng kuwit sa isang serye?",
+      "options": [
+        { "letter": "A", "text": "Bumili ako ng bigas isda at gulay." },
+        { "letter": "B", "text": "Bumili ako ng bigas, isda, at gulay." },
+        { "letter": "C", "text": "Bumili ako ng; bigas; isda." },
+        { "letter": "D", "text": "Bumili ako ng bigas. isda. gulay." }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ginagamit ang kuwit upang paghiwalayin ang tatlo o higit pang aytem sa isang serye: 'bigas, isda, at gulay.'",
+      "lessonId": "ortograpiyang-pambansa:12"
+    },
+    {
+      "text": "Gaano kalakas ang tuldok-kuwit (;) kumpara sa ibang bantas?",
+      "options": [
+        { "letter": "A", "text": "Mas mahina kaysa kuwit" },
+        { "letter": "B", "text": "Mas malakas kaysa kuwit ngunit mas mahina kaysa tuldok" },
+        { "letter": "C", "text": "Katulad ng panaon (?)" },
+        { "letter": "D", "text": "Ginagamit lamang sa mga bilang" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang tuldok-kuwit ay mas malakas kaysa kuwit ngunit mas mahina kaysa tuldok — ginagamit sa pagitan ng magkakaugnay na pahayag.",
+      "lessonId": "ortograpiyang-pambansa:12"
+    },
+    {
+      "text": "Saan ginagamit ang tuldok (.)?",
+      "options": [
+        { "letter": "A", "text": "Sa dulo ng pangungusap na pahayag at sa mga daglat" },
+        { "letter": "B", "text": "Sa dulo ng direktang tanong" },
+        { "letter": "C", "text": "Para sa matinding damdamin" },
+        { "letter": "D", "text": "Sa pagitan ng mga aytem sa serye" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ginagamit ang tuldok sa dulo ng pahayag, sa mga daglat/inisyals (Dr., Kgg.), at sa desimal na bilang.",
+      "lessonId": "ortograpiyang-pambansa:12"
+    },
+
+    {
+      "text": "Saan ginagamit ang panaon o tandang pananong (?)",
+      "options": [
+        { "letter": "A", "text": "Sa dulo ng direktang tanong" },
+        { "letter": "B", "text": "Sa dulo ng pahayag" },
+        { "letter": "C", "text": "Para sa matinding damdamin" },
+        { "letter": "D", "text": "Sa pagitan ng mga aytem sa serye" }
+      ],
+      "correctIndex": 0,
+      "explanation": "Ang panaon (?) ay ginagamit lamang sa dulo ng direktang tanong — hindi sa mga hindi direktang tanong.",
+      "lessonId": "ortograpiyang-pambansa:13"
+    },
+    {
+      "text": "Sa pormal na pagsulat, ilang padamdam (!) ang dapat gamitin?",
+      "options": [
+        { "letter": "A", "text": "Tatlo" },
+        { "letter": "B", "text": "Dalawa" },
+        { "letter": "C", "text": "Isa lamang" },
+        { "letter": "D", "text": "Wala" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Sa pormal na sulatin, isang padamdam lamang ang ginagamit — hindi tulad ng 'Galit na galit!!!' na para lamang sa hindi pormal na sulatin.",
+      "lessonId": "ortograpiyang-pambansa:13"
+    },
+    {
+      "text": "Alin ang TAMANG paggamit ng tutuldok (:)?",
+      "options": [
+        { "letter": "A", "text": "Bumili ng: bigas, isda." },
+        { "letter": "B", "text": "Mga kailangan: lapis, papel, at notebook." },
+        { "letter": "C", "text": "Kumain ka na ba:" },
+        { "letter": "D", "text": "Masaya: ako" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Dapat kumpleto ang sugnay bago ang tutuldok. Tama: 'Mga kailangan: lapis, papel...'. Mali ang maglagay ng tutuldok pagkatapos ng pandiwa.",
+      "lessonId": "ortograpiyang-pambansa:13"
+    },
+
+    {
+      "text": "Alin sa mga sumusunod ang TAMANG paggamit ng gitling sa mga inuulit na salita?",
+      "options": [
+        { "letter": "A", "text": "arawaraw" },
+        { "letter": "B", "text": "araw araw" },
+        { "letter": "C", "text": "aráw-áraw" },
+        { "letter": "D", "text": "araw-araw (nang walang tuldik)" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang tamang anyo ay 'aráw-áraw' — ginagamit ang gitling sa pagitan ng inuulit na salita, at ang tuldik ay nagpapakita ng tamang bigkas.",
+      "lessonId": "ortograpiyang-pambansa:14"
+    },
+    {
+      "text": "Kung sumulat ng 'ika-9 ng Marso', alin ang KATUMBAS na baybay nito?",
+      "options": [
+        { "letter": "A", "text": "ikatlo ng Marso" },
+        { "letter": "B", "text": "ikasiyam ng Marso" },
+        { "letter": "C", "text": "ika-siyam ng Marso" },
+        { "letter": "D", "text": "ika siyam ng Marso" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'ika-9' ay katumbas ng 'ikasiyam' kapag baybay. Sa numeralya may gitling pagkatapos ng 'ika-'; kapag baybay, isang salita na ang buong anyo.",
+      "lessonId": "ortograpiyang-pambansa:14"
+    },
+    {
+      "text": "Alin ang TAMANG paggamit ng gitling kapag ang salitang-ugat ay nagsisimula sa patinig?",
+      "options": [
+        { "letter": "A", "text": "magaral" },
+        { "letter": "B", "text": "mag-aral" },
+        { "letter": "C", "text": "mag aral" },
+        { "letter": "D", "text": "maga-ral" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ginagamit ang gitling kapag ang unlaping nagtatapos sa katinig ay isinasama sa ugat na nagsisimula sa patinig: mag-aral, pag-asa, mag-isa.",
+      "lessonId": "ortograpiyang-pambansa:14"
+    },
+
+    {
+      "text": "Alin ang TAMANG paraan ng pagsulat ng pangalan na may 'de' o 'dela' sa apelyido?",
+      "options": [
+        { "letter": "A", "text": "Juan Dela Cruz" },
+        { "letter": "B", "text": "Juan dela Cruz" },
+        { "letter": "C", "text": "juan dela cruz" },
+        { "letter": "D", "text": "Juan De La Cruz" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'de, dela, del, de la' sa apelyido ay isinusulat nang maliit na titik — maliban kung ito ang unang salita ng pangungusap. Kaya 'Juan dela Cruz'.",
+      "lessonId": "ortograpiyang-pambansa:15"
+    },
+    {
+      "text": "Sa hindi teknikal na gamit, paano isinusulat ang mga bilang mula zero hanggang sandaan?",
+      "options": [
+        { "letter": "A", "text": "Palaging numeralya (1, 2, 3)" },
+        { "letter": "B", "text": "Babaybayin (isa, dalawa, tatlo...)" },
+        { "letter": "C", "text": "Roman numerals" },
+        { "letter": "D", "text": "Hindi isinusulat" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Sa hindi teknikal na gamit, ang mga bilang mula zero hanggang sandaan ay babaybayin — hal. 'limang piraso', 'walumpu't siyam'.",
+      "lessonId": "ortograpiyang-pambansa:15"
+    },
+    {
+      "text": "Kapag apelyido lamang ang ginagamit, paano isinusulat ang titulo?",
+      "options": [
+        { "letter": "A", "text": "Dinadaglat (G., Dr., Bb.)" },
+        { "letter": "B", "text": "Isinusulat nang buo (Ginoong, Doktor, Binibining)" },
+        { "letter": "C", "text": "Tinatanggal" },
+        { "letter": "D", "text": "Isinusulat sa maliit na titik" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Kapag apelyido lamang ang kasama, buo ang titulo (Ginoong Reyes). Kapag kasama ang buong pangalan, dinadaglat ito (G. Enrico Reyes).",
+      "lessonId": "ortograpiyang-pambansa:15"
+    }
+  ]
+}

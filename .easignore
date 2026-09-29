@@ -1,0 +1,38 @@
+# Dev screenshots — reference only, never bundled
+screenshot-ui-studyo-mobile/
+
+# Claude / editor / CI configs
+.claude/
+.vscode/
+.github/
+
+# Docs and planning files at root
+AGENTS.md
+CLAUDE.md
+LICENSE
+*.md
+
+# Test files — not needed in the build bundle
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Onboarding source assets — already compiled into frame-paths.ts
+# The 94 SVG frames are dev source files; the bundled data lives in frame-paths.ts
+assets/onboarding/frames/
+assets/onboarding/svgs/
+assets/onboarding/generate-frame-paths.js
+assets/onboarding/INTEGRATION_GUIDE.md
+assets/onboarding/README.md
+
+# Dead onboarding code — OnboardingAnimation is not imported by any screen
+assets/onboarding/components/OnboardingAnimation.tsx
+assets/onboarding/hooks/useOnboardingAnimation.ts
+
+# Git history — not needed on build server
+.git/
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db

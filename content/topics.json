@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ortograpiyang-pambansa",
+    "title": "Ortograpiyang Pambansa",
+    "description": "Ang opisyal na pamantayan sa wastong pagbabaybay ng wikang Filipino batay sa KWF 2013.",
+    "icon": "menu-book"
+  },
+  {
+    "id": "ortograpiyang-sorsoganon",
+    "title": "Ortograpiyang Sorsoganon",
+    "description": "Ang opisyal na gabay sa wastong pagbabaybay ng wikang Sorsoganon, batay sa KWF / Bicol University, 2024.",
+    "icon": "menu-book"
+  }
+]

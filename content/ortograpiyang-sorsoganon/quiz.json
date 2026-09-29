@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "text": "Ilang titik ang bumubuo sa alpabetong Sorsoganon?",
+      "options": [
+        { "letter": "A", "text": "26" },
+        { "letter": "B", "text": "27" },
+        { "letter": "C", "text": "28" },
+        { "letter": "D", "text": "30" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang alpabetong Sorsoganon ay binubuo ng 28 titik — 5 patinig at 23 katinig, kasama ang 8 hiram na titik (c, f, j, ñ, q, v, x, z).",
+      "lessonId": "ortograpiyang-sorsoganon:2"
+    },
+    {
+      "text": "Ano ang tawag sa NG sa gramatika — iisang tunog ngunit dalawang titik ang kumakatawan dito?",
+      "options": [
+        { "letter": "A", "text": "Ponema" },
+        { "letter": "B", "text": "Digrapo" },
+        { "letter": "C", "text": "Silaba" },
+        { "letter": "D", "text": "Grafema" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang digrapo ay isang tunog na kinakatawan ng dalawang titik. Ang NGng ay isang digrapo na sumasimbolo sa ponemang /ŋ/.",
+      "lessonId": "ortograpiyang-sorsoganon:2"
+    },
+    {
+      "text": "Alin sa mga sumusunod ang nagpapakita ng wastong pagbabaybay batay sa tuntunin na 'Kung ano ang hilwas, mao ang surat'?",
+      "options": [
+        { "letter": "A", "text": "gñaran" },
+        { "letter": "B", "text": "ngaran" },
+        { "letter": "C", "text": "niaran" },
+        { "letter": "D", "text": "niaran" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang tunog /ŋ/ ay isusulat sa letrang ⟨ng⟩, hindi sa lumang Español na ⟨gñ⟩. Kaya ang tamang baybay ay 'ngaran', hindi 'gñaran'.",
+      "lessonId": "ortograpiyang-sorsoganon:5"
+    },
+    {
+      "text": "Ano ang tamang baybay ng salitang Español na 'compañia' sa Sorsoganon?",
+      "options": [
+        { "letter": "A", "text": "kompania" },
+        { "letter": "B", "text": "kompaniya" },
+        { "letter": "C", "text": "kompanya" },
+        { "letter": "D", "text": "kompaia" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang mahinang patinig na ⟨i⟩ ay nagiging ⟨y⟩ bago ang malakas na patinig. Kaya ang 'ia' sa 'compañia' ay nagiging 'ya': kompanya.",
+      "lessonId": "ortograpiyang-sorsoganon:6"
+    },
+    {
+      "text": "Alin ang tamang baybay ng salitang 'desgrasya' sa Ortograpiyang Sorsoganon?",
+      "options": [
+        { "letter": "A", "text": "desgrasya" },
+        { "letter": "B", "text": "disgrasya" },
+        { "letter": "C", "text": "dasgrasya" },
+        { "letter": "D", "text": "dusgrasya" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Sa mga salitang hiram sa Español, ang ⟨e⟩ na nása gitna ng salita ay nagiging ⟨i⟩. Kaya 'desgrasya' ay nagiging 'disgrasya'.",
+      "lessonId": "ortograpiyang-sorsoganon:8"
+    },
+    {
+      "text": "Alin ang tamang baybay ng 'obispo' sa Sorsoganon?",
+      "options": [
+        { "letter": "A", "text": "ubispo" },
+        { "letter": "B", "text": "ibispo" },
+        { "letter": "C", "text": "obispo" },
+        { "letter": "D", "text": "abispo" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Sa mga salitang hiram sa Español na nagsisimula sa ⟨o⟩, pinapanatili ang ⟨o⟩. Kaya 'obispo' ay nananatiling 'obispo', hindi 'ubispo'.",
+      "lessonId": "ortograpiyang-sorsoganon:8"
+    },
+    {
+      "text": "Paano baybayín ang Ingles na 'school' sa Sorsoganon?",
+      "options": [
+        { "letter": "A", "text": "eskul" },
+        { "letter": "B", "text": "iskúl" },
+        { "letter": "C", "text": "skul" },
+        { "letter": "D", "text": "askul" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang mga salitang Ingles na nagsisimula sa ⟨s⟩ ay ginagamitan ng ⟨i⟩ (hindi ⟨e⟩). Kaya 'school' ay nagiging 'iskúl'. Ang ⟨e⟩ ay para sa Español (eskuwela).",
+      "lessonId": "ortograpiyang-sorsoganon:8"
+    },
+    {
+      "text": "Alin ang tamang kayarian ng pantig para sa katutubong salitang Sorsoganon?",
+      "options": [
+        { "letter": "A", "text": "KKPKKK (tulad ng 'shorts')" },
+        { "letter": "B", "text": "KKP (tulad ng 'groto')" },
+        { "letter": "C", "text": "KP (tulad ng 'bunay')" },
+        { "letter": "D", "text": "KKPK (tulad ng 'trangkaso')" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang mga kayarian ng pantig na P, KP, PK, at KPK ay karaniwang makikita sa katutubong salita. Ang KKPKKK ay para sa mga salitang hiram lamang.",
+      "lessonId": "ortograpiyang-sorsoganon:3"
+    },
+    {
+      "text": "Alin ang wastong pag-aplay ng panlaping {pang-} sa salitang 'balay' (bahay)?",
+      "options": [
+        { "letter": "A", "text": "pangbalay" },
+        { "letter": "B", "text": "panbalay" },
+        { "letter": "C", "text": "pambalay" },
+        { "letter": "D", "text": "pang-balay" }
+      ],
+      "correctIndex": 2,
+      "explanation": "Ang panlaping {pang-} ay nagiging {pam-} kung ang salitang-ugat ay nagsisimula sa titik ⟨b⟩. Kaya 'pang-' + 'balay' = 'pambalay'.",
+      "lessonId": "ortograpiyang-sorsoganon:5"
+    },
+    {
+      "text": "Ano ang kahulugan ng salitang 'sálog' sa Sorsoganon (na may pahilis sa unang pantig)?",
+      "options": [
+        { "letter": "A", "text": "sahíg (sahig)" },
+        { "letter": "B", "text": "ílog (ilog)" },
+        { "letter": "C", "text": "hápon (hapon)" },
+        { "letter": "D", "text": "dagat (dagat)" }
+      ],
+      "correctIndex": 1,
+      "explanation": "Ang 'sálog' /ˈsa.luɡ/ — na may diin sa unang pantig — ay nangangahulugang 'ílog'. Ang 'salóg' /sa.ˈluɡ/ — na may diin sa ikalawang pantig — naman ay nangangahulugang 'sahíg'. Ito ay nagpapakita ng ponemikong diin.",
+      "lessonId": "ortograpiyang-sorsoganon:2"
+    }
+  ]
+}
