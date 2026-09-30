@@ -8,27 +8,29 @@ import {
 } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Colors from '@/constants/Colors';
 import { mark, STEPS } from '@/lib/diagnostics';
-import { whenSplashPainted } from '@/lib/splash-gate';
 import { ContentLangProvider } from '@/hooks/useContentLang';
 import { NotificationsProvider } from '@/hooks/useNotifications';
 import { ProfileProvider } from '@/hooks/useProfile';
 import { ProgressProvider } from '@/hooks/useProgressStore';
 import { ThemeProvider as StudyoThemeProvider, useTheme } from '@/hooks/useTheme';
 import { CrashOverlay } from '@/src/components/CrashOverlay';
+import { SplashOverlay } from '@/src/components/SplashOverlay';
 
 export { ErrorBoundary };
 
-// No root app/index.tsx — the root stack begins at splash.
-// Routing: splash → onboarding/{welcome,interests,goal} → (tabs)
-export const unstable_settings = {
-  initialRouteName: 'splash',
-};
+// The splash is NOT a route. The cold-start URL is `/`, which resolves to
+// `(tabs)/index` (home) — an `initialRouteName: 'splash'` only sets the stack
+// anchor, not the loaded screen, so in a release build home rendered first and
+// the splash route ran invisibly underneath. The splash is now <SplashOverlay>,
+// rendered on top of the navigator and dismissed when it finishes.
+// Routing: (tabs) is the entry; first launch redirects to onboarding/welcome
+// from under the overlay.
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
@@ -93,35 +95,12 @@ function RootLayoutNav() {
 
   useEffect(() => {
     mark(STEPS.PROVIDERS);
+    mark(STEPS.STACK);
     mark(STEPS.LAUNCH_COMPLETE);
   }, []);
 
-  // No self-redirect to /splash here (it used to exist for web). `splash` is
-  // already the root stack's initialRouteName, so the animation plays on a cold
-  // start on every platform. The redirect only added a second path into the
-  // same route, and it was the one piece of routing that made "splash always
-  // shows" depend on something other than initialRouteName.
-
-  const nativeSplashHidden = useRef(false);
-  const handleRootLayout = useCallback(() => {
-    if (nativeSplashHidden.current) return;
-    nativeSplashHidden.current = true;
-    mark(STEPS.STACK);
-    // onLayout only proves the root View was measured — it does not mean /splash
-    // has drawn anything. In a release APK the bundle is already resident, so the
-    // router can resolve the destination in this same frame. Dropping the native
-    // splash here tore it down before the animated splash had painted, and the
-    // user landed on the destination having never seen the animation.
-    // The wait is bounded inside the gate, so a /splash that never mounts still
-    // resolves.
-    whenSplashPainted().then(() => {
-      mark(STEPS.SPLASH_HANDOFF);
-      SplashScreen.hideAsync().catch(() => {});
-    });
-  }, []);
-
   return (
-    <View style={{ flex: 1 }} onLayout={handleRootLayout}>
+    <View style={{ flex: 1 }}>
       {/* StatusBar text/icon color adapts to light/dark theme automatically */}
       <StatusBar style={isDark ? 'light' : 'dark'} />
       <ThemeProvider value={isDark ? StudyoDarkNavTheme : StudyoLightNavTheme}>
@@ -129,9 +108,8 @@ function RootLayoutNav() {
           <ContentLangProvider>
             <ProfileProvider>
               <NotificationsProvider>
-                <Stack initialRouteName="splash" screenOptions={{ headerShown: false }}>
-                  {/* Flow: splash → onboarding (3 steps) → (tabs) */}
-                  <Stack.Screen name="splash" options={{ animation: 'none' }} />
+                <Stack screenOptions={{ headerShown: false }}>
+                  {/* Entry: (tabs); first launch redirects to onboarding */}
                   <Stack.Screen name="onboarding" />
                   <Stack.Screen name="(tabs)" />
                   <Stack.Screen name="settings" />
@@ -141,6 +119,8 @@ function RootLayoutNav() {
                   <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
                   <Stack.Screen name="+not-found" />
                 </Stack>
+                {/* The opening animation, above the navigator. Dismisses itself. */}
+                <SplashOverlay />
                 <CrashOverlay />
               </NotificationsProvider>
             </ProfileProvider>
